@@ -7,24 +7,23 @@
     <title>Millena Venâncio | Psicóloga</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* ===== TOKENS ===== */
         :root {
-            --blush:       #F9E8EC;
-            --rose:        #E8B4C0;
-            --mauve:       #C47D96;
-            --mauve-dark:  #A85F7A;
-            --mint:        #D4EBD8;
-            --sage:        #7AB893;
-            --sage-dark:   #5C9B75;
-            --dark:        #3D3535;
-            --text:        #5C4A4A;
-            --text-light:  #9A8080;
-            --white:       #FFFFFF;
-            --off-white:   #FDFAF9;
-            --shadow:      rgba(61,53,53,0.07);
-            --shadow-md:   rgba(61,53,53,0.13);
+            --blush:      #F9E8EC;
+            --rose:       #E8B4C0;
+            --mauve:      #C47D96;
+            --mauve-dark: #A85F7A;
+            --mint:       #D4EBD8;
+            --sage:       #7AB893;
+            --sage-dark:  #5C9B75;
+            --dark:       #2E2828;
+            --text:       #5C4A4A;
+            --muted:      #9A8080;
+            --white:      #FFFFFF;
+            --off:        #F9F5F3;
+            --border:     #EDCFD7;
         }
 
         /* ===== RESET ===== */
@@ -33,561 +32,673 @@
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text);
-            background: var(--off-white);
-            line-height: 1.6;
+            background: var(--white);
+            line-height: 1.65;
             overflow-x: hidden;
         }
-        h1,h2,h3,h4 { font-family: 'Playfair Display', serif; color: var(--dark); line-height: 1.2; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--dark); line-height: 1.15; }
         a { text-decoration: none; color: inherit; }
         img { max-width: 100%; display: block; }
+        button { font-family: inherit; }
 
         /* ===== LAYOUT ===== */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+        .wrap       { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+        .wrap--slim { max-width:  720px; margin: 0 auto; padding: 0 28px; }
 
-        /* ===== TYPE UTILITIES ===== */
-        .section-label {
-            font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 0.13em; text-transform: uppercase;
-            color: var(--mauve); margin-bottom: 12px;
+        /* ===== TYPE ===== */
+        .eyebrow {
+            display: block;
+            font-size: 0.68rem; font-weight: 600;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--mauve); margin-bottom: 16px;
         }
-        .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 16px; }
-        .section-sub {
-            font-size: 0.97rem; color: var(--text-light);
-            max-width: 540px; line-height: 1.75;
+        .display {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            margin-bottom: 18px;
         }
+        .display em { font-style: italic; color: var(--mauve); }
 
         /* ===== BUTTONS ===== */
-        .btn-primary {
+        .btn {
             display: inline-flex; align-items: center; gap: 8px;
-            background: var(--mauve); color: var(--white);
-            padding: 14px 28px; border-radius: 50px;
-            font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600;
-            border: none; cursor: pointer;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            padding: 13px 28px; border-radius: 3px;
+            font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; border: none;
+            transition: background 0.2s, color 0.2s, transform 0.18s;
         }
-        .btn-primary:hover {
-            background: var(--mauve-dark); transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(196,125,150,0.38);
+        .btn-fill   { background: var(--mauve); color: var(--white); }
+        .btn-fill:hover { background: var(--mauve-dark); transform: translateY(-1px); }
+        .btn-line   {
+            background: transparent; color: var(--dark);
+            border: 1.5px solid var(--border);
         }
-        .btn-ghost {
-            display: inline-flex; align-items: center; gap: 8px;
+        .btn-line:hover { border-color: var(--mauve); color: var(--mauve); }
+        .btn-text   {
             background: transparent; color: var(--mauve);
-            padding: 13px 28px; border-radius: 50px;
-            font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600;
-            border: 2px solid var(--rose); cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
+            padding: 0; font-size: 0.88rem;
         }
-        .btn-ghost:hover { background: var(--blush); border-color: var(--mauve); }
+        .btn-text::after { content: ' →'; }
+        .btn-text:hover  { color: var(--mauve-dark); }
 
-        /* ===== ANIMATIONS ===== */
-        .fade-in { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        .fade-in:nth-child(2) { transition-delay: 0.1s; }
-        .fade-in:nth-child(3) { transition-delay: 0.2s; }
-        .fade-in:nth-child(4) { transition-delay: 0.3s; }
-        .fade-in:nth-child(5) { transition-delay: 0.4s; }
-        .fade-in:nth-child(6) { transition-delay: 0.5s; }
+        /* ===== REVEAL ANIMATIONS ===== */
+        .rv { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .rv.show { opacity: 1; transform: none; }
 
         /* ===== NAV ===== */
-        #main-nav {
+        #nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 18px 0;
-            transition: background 0.35s, box-shadow 0.35s;
+            padding: 20px 0;
+            transition: background 0.3s, box-shadow 0.3s;
         }
-        #main-nav.scrolled {
-            background: rgba(253,250,249,0.95);
+        #nav.on {
+            background: rgba(253,250,249,0.96);
             backdrop-filter: blur(14px);
-            box-shadow: 0 1px 24px var(--shadow);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.06);
         }
-        #main-nav .container { display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--dark); }
-        .nav-logo span { color: var(--mauve); }
-        .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
-        .nav-links a { font-size: 0.86rem; font-weight: 500; color: var(--text); transition: color 0.2s; }
+        .nav-row  { display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; font-weight: 700; color: var(--dark);
+        }
+        .nav-brand em { font-style: italic; color: var(--mauve); }
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .nav-links a {
+            font-size: 0.84rem; font-weight: 500; color: var(--text);
+            transition: color 0.2s;
+        }
         .nav-links a:hover { color: var(--mauve); }
-        .nav-cta {
-            background: var(--mauve) !important; color: var(--white) !important;
-            padding: 9px 20px !important; border-radius: 50px;
-            font-weight: 600 !important; transition: background 0.2s !important;
+        .nav-links .cta {
+            background: var(--mauve); color: var(--white) !important;
+            padding: 9px 20px; border-radius: 3px; font-weight: 600;
+            transition: background 0.2s;
         }
-        .nav-cta:hover { background: var(--mauve-dark) !important; }
+        .nav-links .cta:hover { background: var(--mauve-dark); }
 
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-        .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+        .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .ham span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
 
-        .mobile-menu {
-            display: none; position: fixed; inset: 0; background: var(--off-white); z-index: 99;
-            flex-direction: column; align-items: center; justify-content: center; gap: 30px;
+        .mmenu {
+            display: none; position: fixed; inset: 0;
+            background: var(--off); z-index: 99;
+            flex-direction: column; align-items: center; justify-content: center; gap: 28px;
         }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--dark); transition: color 0.2s; }
-        .mobile-menu a:hover { color: var(--mauve); }
-        .mobile-close { position: absolute; top: 24px; right: 28px; font-size: 1.4rem; cursor: pointer; color: var(--text); }
+        .mmenu.open { display: flex; }
+        .mmenu a    { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); transition: color 0.2s; }
+        .mmenu a:hover { color: var(--mauve); }
+        .mmenu-close { position: absolute; top: 22px; right: 26px; font-size: 1.3rem; cursor: pointer; color: var(--text); }
 
         /* ===== HERO ===== */
-        #inicio {
-            min-height: 100vh; display: flex; align-items: center;
-            position: relative; overflow: hidden; padding-top: 90px;
-            background: linear-gradient(140deg, var(--blush) 0%, var(--off-white) 55%, var(--mint) 100%);
+        #hero {
+            padding-top: 76px;
+            min-height: 100vh;
+            /* diagonal split: white left, blush right — aligned with the container center */
+            background: linear-gradient(to right, var(--white) 50%, var(--blush) 50%);
+            display: flex; align-items: center;
         }
-        .blob { position: absolute; pointer-events: none; }
-        .blob-1 { top: -80px; right: -80px; width: 560px; height: 560px; opacity: 0.22; }
-        .blob-2 { bottom: -120px; left: -60px; width: 380px; height: 380px; opacity: 0.16; }
-
         .hero-grid {
             display: grid; grid-template-columns: 1fr 1fr;
-            align-items: center; gap: 60px;
-            position: relative; z-index: 1; padding: 60px 0;
+            min-height: calc(100vh - 76px);
+            align-items: center; gap: 64px;
         }
-        .hero-tag {
-            display: inline-block; background: var(--white);
-            border: 1px solid var(--rose); color: var(--mauve);
-            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-            text-transform: uppercase; padding: 6px 14px; border-radius: 50px; margin-bottom: 20px;
+        .hero-text { padding: 80px 48px 80px 0; }
+        .hero-kicker {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--muted);
+            margin-bottom: 28px;
         }
-        .hero-title { font-size: clamp(2.4rem, 5vw, 3.4rem); margin-bottom: 6px; }
-        .hero-title em { font-style: italic; color: var(--mauve); }
-        .hero-crp { font-size: 0.8rem; color: var(--text-light); font-weight: 500; margin-bottom: 22px; letter-spacing: 0.04em; }
-        .hero-sub { font-size: 1.02rem; color: var(--text); line-height: 1.78; margin-bottom: 36px; max-width: 440px; }
-        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-        .hero-stats { display: flex; gap: 28px; margin-top: 40px; }
-        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--mauve); }
-        .stat-lbl { font-size: 0.73rem; color: var(--text-light); font-weight: 500; }
+        .hero-kicker::before { content: ''; display: block; width: 24px; height: 1px; background: var(--rose); }
+        .hero-h1 { font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 22px; }
+        .hero-h1 em { color: var(--mauve); font-style: italic; }
+        .hero-sub {
+            font-size: 1rem; color: var(--text); line-height: 1.78;
+            margin-bottom: 36px; max-width: 400px;
+        }
+        .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
 
-        .photo-wrap { display: flex; justify-content: center; position: relative; }
-        .photo-ring {
-            width: 380px; height: 380px;
-            border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-            background: linear-gradient(145deg, var(--rose), var(--sage));
-            padding: 6px;
-            animation: morph 9s ease-in-out infinite;
+        .hero-photo-side {
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            padding: 60px 0 60px 48px;
+            gap: 18px;
         }
-        @keyframes morph {
-            0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
-            33%      { border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%; }
-            66%      { border-radius: 50% 50% 60% 40% / 45% 55% 50% 50%; }
-        }
-        .photo-inner {
-            width: 100%; height: 100%; border-radius: inherit;
-            background: linear-gradient(145deg, var(--blush), var(--mint));
+        .hero-img {
+            width: 100%; max-width: 380px; aspect-ratio: 3/4;
+            border-radius: 4px; overflow: hidden;
+            background: linear-gradient(160deg, #EDD3DB 0%, var(--mint) 100%);
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif; font-size: 4.5rem;
-            color: var(--mauve); font-weight: 700; overflow: hidden;
+            font-family: 'Playfair Display', serif; font-size: 5rem;
+            font-weight: 700; color: var(--mauve);
         }
-        .photo-inner img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; max-width: 380px; }
+        .badge {
+            font-size: 0.7rem; font-weight: 600; color: var(--text);
+            background: var(--white); border: 1px solid var(--border);
+            padding: 5px 12px; border-radius: 2px;
+            white-space: nowrap;
+        }
+        .badge.g { background: var(--mint); border-color: var(--sage); color: var(--sage-dark); }
+
+        /* ===== SHARED SECTION SPACING ===== */
+        .s { padding: 96px 0; }
+        .s--off   { background: var(--off); }
+        .s--blush { background: var(--blush); }
+        .s--dark  { background: var(--dark); }
+        .s--mint  { background: var(--mint); }
+
+        /* Hairline divider */
+        hr.thin { border: none; border-top: 1px solid var(--border); }
+
+        /* ===== DORES ===== */
+        .dores-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            margin-top: 48px;
+        }
+        .dor {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding: 20px 0; border-bottom: 1px solid var(--border);
+            font-size: 0.95rem; color: var(--text); line-height: 1.6;
+        }
+        .dor:nth-child(odd)  { padding-right: 40px; }
+        .dor:nth-child(even) {
+            padding-left: 40px;
+            border-left: 1px solid var(--border);
+        }
+        .dor-e { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+        .dores-note {
+            margin-top: 52px; padding-top: 48px;
+            border-top: 1px solid var(--border);
+            display: grid; grid-template-columns: 1.2fr 1fr;
+            gap: 40px; align-items: center;
+        }
+        .dores-note p { font-size: 1rem; color: var(--text); line-height: 1.78; }
+        .dores-note strong { color: var(--dark); font-weight: 600; }
 
         /* ===== SOBRE ===== */
-        #sobre { padding: 100px 0; background: var(--white); }
-        .sobre-grid { display: grid; grid-template-columns: 1fr 1.4fr; align-items: center; gap: 72px; }
-        .sobre-img-wrap { position: relative; }
+        .sobre-grid {
+            display: grid; grid-template-columns: 1fr 1.2fr;
+            gap: 72px; align-items: center; margin-top: 52px;
+        }
         .sobre-img {
-            width: 100%; aspect-ratio: 3/4; border-radius: 24px;
-            background: linear-gradient(145deg, var(--blush), var(--mint));
+            width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden;
+            background: linear-gradient(160deg, var(--blush), var(--mint));
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--mauve); overflow: hidden;
+            font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--mauve);
         }
-        .crp-badge {
-            position: absolute; bottom: -18px; right: -18px;
-            background: var(--white); border: 1px solid var(--rose); border-radius: 16px;
-            padding: 16px 20px; box-shadow: 0 8px 32px var(--shadow-md); text-align: center;
-        }
-        .crp-badge-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--mauve); }
-        .crp-badge-lbl { font-size: 0.72rem; color: var(--text-light); font-weight: 500; }
-        .sobre-text { color: var(--text); line-height: 1.82; margin-bottom: 16px; font-size: 0.96rem; }
-        .pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-        .pill { background: var(--blush); color: var(--mauve); font-size: 0.78rem; font-weight: 600; padding: 7px 16px; border-radius: 50px; }
-        .pill.green { background: var(--mint); color: var(--sage-dark); }
+        .sobre-img img { width: 100%; height: 100%; object-fit: cover; }
+        .sobre-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+        .sobre-p { font-size: 0.96rem; line-height: 1.82; color: var(--text); margin-bottom: 16px; }
+        .sobre-btns { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 28px; }
 
         /* ===== ATENDIMENTOS ===== */
-        #atendimentos { padding: 100px 0; background: var(--blush); }
-        .section-head { text-align: center; margin-bottom: 56px; }
-        .section-head .section-sub { margin: 0 auto; }
-        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-        .card {
-            background: var(--white); border-radius: 20px; padding: 34px 28px;
-            box-shadow: 0 2px 18px var(--shadow); position: relative; overflow: hidden;
-            transition: transform 0.28s, box-shadow 0.28s;
+        .atend-list { margin-top: 48px; }
+        .atend-item {
+            display: grid; grid-template-columns: 44px 1fr;
+            gap: 28px; padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
         }
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, var(--rose), var(--sage));
+        .atend-item:first-child { border-top: 1px solid var(--border); }
+        .atend-icon { font-size: 1.5rem; margin-top: 3px; }
+        .atend-item h3 { font-size: 1rem; margin-bottom: 8px; }
+        .atend-item p  { font-size: 0.9rem; color: var(--muted); line-height: 1.72; }
+
+        /* ===== COMO FUNCIONA ===== */
+        .steps { margin-top: 48px; }
+        .step {
+            display: grid; grid-template-columns: 52px 1fr;
+            gap: 28px; padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
         }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 42px var(--shadow-md); }
-        .card-icon {
-            width: 50px; height: 50px; border-radius: 14px;
-            background: var(--blush); display: flex; align-items: center;
-            justify-content: center; font-size: 1.4rem; margin-bottom: 18px;
+        .step:first-child { border-top: 1px solid var(--border); }
+        .step-n {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; font-weight: 700; color: var(--rose);
+            line-height: 1;
         }
-        .card-icon.g { background: var(--mint); }
-        .card h3 { font-size: 1.05rem; margin-bottom: 10px; }
-        .card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.72; }
+        .step h3    { font-size: 1rem; margin-bottom: 8px; }
+        .step h3 em { font-style: italic; color: var(--mauve); }
+        .step p     { font-size: 0.9rem; color: var(--muted); line-height: 1.72; }
 
         /* ===== DEPOIMENTOS ===== */
-        #depoimentos { padding: 100px 0; background: var(--white); }
-        .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-        .dep-card {
-            background: var(--off-white); border: 1px solid var(--blush);
-            border-radius: 20px; padding: 30px;
+        .dep-list { margin-top: 48px; }
+        .dep-item {
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 40px; padding: 36px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
         }
-        .dep-quote { font-size: 2.8rem; line-height: 1; color: var(--rose); font-family: 'Playfair Display', serif; margin-bottom: 10px; }
-        .dep-stars { color: #F4B942; font-size: 0.82rem; letter-spacing: 2px; margin-bottom: 14px; }
-        .dep-text { font-size: 0.9rem; color: var(--text); line-height: 1.78; font-style: italic; margin-bottom: 22px; }
-        .dep-author { display: flex; align-items: center; gap: 12px; }
-        .dep-avatar {
-            width: 38px; height: 38px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--rose), var(--sage));
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.82rem; font-weight: 700; color: var(--white); flex-shrink: 0;
-        }
-        .dep-name { font-size: 0.86rem; font-weight: 600; color: var(--dark); }
-        .dep-role { font-size: 0.75rem; color: var(--text-light); }
+        .dep-item:first-child { border-top: 1px solid var(--border); }
+        .dep-q   { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--rose); line-height: 1; margin-bottom: 10px; }
+        .dep-txt { font-size: 0.95rem; color: var(--text); line-height: 1.78; font-style: italic; }
+        .dep-by  { text-align: right; white-space: nowrap; }
+        .dep-name { font-size: 0.84rem; font-weight: 600; color: var(--dark); }
+        .dep-role { font-size: 0.73rem; color: var(--muted); margin-top: 3px; }
+        .dep-stars{ color: #F4B942; font-size: 0.72rem; letter-spacing: 2px; margin-top: 6px; }
 
-        /* ===== REDES SOCIAIS ===== */
-        #redes {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--mint) 0%, var(--blush) 100%);
+        /* ===== FAQ ===== */
+        .faq-list { margin-top: 44px; }
+        .faq-item  { border-bottom: 1px solid var(--border); }
+        .faq-item:first-child { border-top: 1px solid var(--border); }
+        .faq-btn   {
+            width: 100%; display: flex; align-items: center;
+            justify-content: space-between; padding: 20px 0;
+            background: none; border: none; cursor: pointer;
+            text-align: left; gap: 16px;
         }
-        .redes-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-        .redes-content p { color: var(--text); font-size: 0.96rem; margin-top: 8px; }
-        .redes-links { display: flex; gap: 14px; flex-wrap: wrap; }
+        .faq-q    { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark); }
+        .faq-ico  {
+            width: 26px; height: 26px; border-radius: 50%;
+            background: var(--blush); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--mauve); font-size: 1rem; flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+        .faq-item.open .faq-ico { transform: rotate(45deg); }
+        .faq-ans {
+            display: none; padding: 0 0 20px;
+            font-size: 0.91rem; color: var(--muted); line-height: 1.78;
+            max-width: 620px;
+        }
+        .faq-item.open .faq-ans { display: block; }
+
+        /* ===== REDES ===== */
+        .redes-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+        .redes-btns { display: flex; gap: 12px; flex-wrap: wrap; }
         .rede-btn {
             display: flex; align-items: center; gap: 12px;
-            background: var(--white); padding: 14px 22px; border-radius: 14px;
-            font-weight: 600; font-size: 0.88rem; color: var(--dark);
-            box-shadow: 0 2px 16px var(--shadow); transition: transform 0.22s, box-shadow 0.22s;
+            background: var(--white); padding: 13px 20px; border-radius: 3px;
+            border: 1px solid var(--border); font-size: 0.86rem; font-weight: 600;
+            color: var(--dark); transition: border-color 0.2s, color 0.2s;
         }
-        .rede-btn:hover { transform: translateY(-3px); box-shadow: 0 7px 26px var(--shadow-md); }
-        .rede-btn-icon { font-size: 1.3rem; }
-        .rede-btn-meta-lbl { font-size: 0.68rem; color: var(--text-light); font-weight: 500; }
-        .rede-btn-meta-val { font-size: 0.88rem; font-weight: 600; }
-
-        /* ===== AGENDAMENTO ===== */
-        #agendamento { padding: 100px 0; background: var(--off-white); }
-        .agenda-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; }
-        .agenda-content p { color: var(--text-light); line-height: 1.78; margin-bottom: 32px; font-size: 0.96rem; }
-        .info-list { display: flex; flex-direction: column; gap: 14px; }
-        .info-row { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; }
-        .info-icon {
-            width: 36px; height: 36px; border-radius: 10px; background: var(--mint);
-            display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
-        }
-        .wa-card {
-            background: linear-gradient(145deg, #25D366, #128C7E);
-            border-radius: 24px; padding: 48px 40px; text-align: center;
-            color: white; box-shadow: 0 18px 52px rgba(37,211,102,0.28);
-        }
-        .wa-card-icon { font-size: 3.8rem; margin-bottom: 18px; }
-        .wa-card h3 { font-family: 'Inter', sans-serif; font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 12px; }
-        .wa-card p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 28px; line-height: 1.65; }
-        .btn-wa {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: white; color: #128C7E;
-            padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,0.18); }
+        .rede-btn:hover { border-color: var(--mauve); color: var(--mauve); }
+        .rede-lbl { font-size: 0.64rem; color: var(--muted); font-weight: 500; }
+        .rede-val { font-size: 0.86rem; font-weight: 600; }
 
         /* ===== FORMULÁRIO ===== */
-        #contato { padding: 100px 0; background: var(--blush); }
-        .form-grid { display: grid; grid-template-columns: 1fr 1.35fr; align-items: start; gap: 72px; }
-        .form-content p { color: var(--text-light); line-height: 1.78; font-size: 0.96rem; margin-top: 14px; }
-        .form-card {
-            background: var(--white); border-radius: 24px;
-            padding: 40px; box-shadow: 0 4px 32px var(--shadow);
+        .form-2col { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start; }
+        .form-intro { font-size: 0.96rem; color: var(--muted); line-height: 1.78; margin-top: 14px; }
+        .form-box {
+            background: var(--white); padding: 40px; border-radius: 4px;
+            box-shadow: 0 2px 24px rgba(61,53,53,0.07);
         }
-        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .fg { margin-bottom: 18px; }
-        .fg label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+        .form-r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .fg { margin-bottom: 16px; }
+        .fg label { display: block; font-size: 0.77rem; font-weight: 600; color: var(--text); margin-bottom: 6px; letter-spacing: 0.02em; }
         .fg input, .fg textarea, .fg select {
-            width: 100%; padding: 12px 16px;
-            border: 1.5px solid var(--rose); border-radius: 12px;
+            width: 100%; padding: 11px 14px;
+            border: 1.5px solid var(--border); border-radius: 3px;
             font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--dark);
-            background: var(--off-white); outline: none;
+            background: var(--off); outline: none; appearance: none;
             transition: border-color 0.2s, box-shadow 0.2s;
-            appearance: none;
         }
         .fg input:focus, .fg textarea:focus, .fg select:focus {
             border-color: var(--mauve);
-            box-shadow: 0 0 0 3px rgba(196,125,150,0.12);
+            box-shadow: 0 0 0 3px rgba(196,125,150,0.1);
             background: var(--white);
         }
-        .fg textarea { resize: vertical; min-height: 118px; }
-        .btn-form { width: 100%; padding: 14px; font-size: 0.93rem; }
-        .form-ok { display: none; text-align: center; padding: 24px; color: var(--sage-dark); font-weight: 600; font-size: 0.97rem; }
+        .fg textarea { resize: vertical; min-height: 110px; }
+        .btn-submit { width: 100%; padding: 13px; font-size: 0.9rem; border-radius: 3px; }
+        .form-ok { display: none; text-align: center; padding: 24px; color: var(--sage-dark); font-weight: 600; font-size: 0.96rem; }
+
+        /* ===== CTA FINAL ===== */
+        #cta { padding: 100px 0; background: var(--blush); text-align: center; }
+        .cta-h   { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; }
+        .cta-h em { font-style: italic; color: var(--mauve); }
+        .cta-p   { font-size: 0.98rem; color: var(--text); line-height: 1.78; max-width: 460px; margin: 0 auto 36px; }
+        .cta-meta { font-size: 0.75rem; color: var(--muted); margin-top: 16px; letter-spacing: 0.04em; }
 
         /* ===== FLOAT WA ===== */
         .wa-float {
-            position: fixed; bottom: 28px; right: 28px; z-index: 97;
-            width: 58px; height: 58px; border-radius: 50%;
-            background: #25D366; display: flex; align-items: center; justify-content: center;
-            font-size: 1.6rem; box-shadow: 0 4px 22px rgba(37,211,102,0.5);
+            position: fixed; bottom: 26px; right: 26px; z-index: 97;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: #25D366; display: flex; align-items: center;
+            justify-content: center; font-size: 1.4rem;
+            box-shadow: 0 4px 18px rgba(37,211,102,0.45);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
+        .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 26px rgba(37,211,102,0.55); }
 
         /* ===== FOOTER ===== */
-        footer { background: var(--dark); padding: 48px 0; }
-        .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
-        .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--white); }
-        .footer-brand span { color: var(--rose); }
-        .footer-crp { font-size: 0.76rem; color: rgba(255,255,255,0.45); margin-top: 4px; }
-        .footer-links { display: flex; gap: 22px; list-style: none; }
-        .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; }
-        .footer-links a:hover { color: var(--white); }
-        .footer-copy {
-            font-size: 0.75rem; color: rgba(255,255,255,0.3); text-align: center;
-            width: 100%; margin-top: 16px; padding-top: 16px;
+        footer { background: var(--dark); padding: 44px 0; }
+        .foot-row {
+            display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+        .foot-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); }
+        .foot-brand em { font-style: italic; color: var(--rose); }
+        .foot-crp { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 3px; }
+        .foot-links a { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-right: 20px; transition: color 0.2s; }
+        .foot-links a:hover { color: var(--white); }
+        .foot-copy {
+            font-size: 0.7rem; color: rgba(255,255,255,0.25); text-align: center;
+            width: 100%; margin-top: 14px; padding-top: 14px;
             border-top: 1px solid rgba(255,255,255,0.07);
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
+            #hero { background: var(--white); }
+            .hero-grid { grid-template-columns: 1fr; min-height: auto; gap: 0; }
+            .hero-text { padding: 72px 0 48px; }
+            .hero-sub { max-width: 100%; }
+            .hero-photo-side {
+                padding: 48px 0 72px;
+                background: var(--blush);
+                width: 100vw; margin-left: -28px;
+                padding-left: 28px; padding-right: 28px;
+            }
+            .hero-img { max-width: 100%; aspect-ratio: 4/3; }
             .nav-links { display: none; }
-            .hamburger { display: flex; }
-
-            .hero-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
-            .hero-actions { justify-content: center; }
-            .hero-stats { justify-content: center; }
-            .hero-sub { margin: 0 auto 36px; }
-            .photo-wrap { order: -1; }
-            .photo-ring { width: 270px; height: 270px; }
-
-            .sobre-grid { grid-template-columns: 1fr; }
-            .crp-badge { right: 4px; bottom: -14px; }
-
-            .cards-grid { grid-template-columns: 1fr; }
-            .dep-grid { grid-template-columns: 1fr; }
-
-            .redes-inner { flex-direction: column; text-align: center; }
-            .redes-links { justify-content: center; }
-
-            .agenda-grid { grid-template-columns: 1fr; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-row-2 { grid-template-columns: 1fr; }
-
-            .footer-inner { flex-direction: column; text-align: center; }
-            .footer-links { justify-content: center; }
+            .ham { display: flex; }
+            .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+            .dores-grid { grid-template-columns: 1fr; }
+            .dor:nth-child(even) { padding-left: 0; border-left: none; }
+            .dor:nth-child(odd)  { padding-right: 0; }
+            .dores-note { grid-template-columns: 1fr; }
+            .form-2col { grid-template-columns: 1fr; gap: 40px; }
+            .form-r2   { grid-template-columns: 1fr; }
+            .redes-row { flex-direction: column; align-items: flex-start; }
+            .foot-row  { flex-direction: column; }
+            .foot-links { margin-top: 4px; }
         }
-        @media (max-width: 560px) {
-            .photo-ring { width: 220px; height: 220px; }
-            .form-card { padding: 24px 20px; }
-            .wa-card { padding: 36px 28px; }
+        @media (max-width: 600px) {
+            .s { padding: 72px 0; }
+            .dep-item { grid-template-columns: 1fr; }
+            .dep-by   { text-align: left; margin-top: 14px; }
+            .form-box { padding: 24px 20px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            *, .photo-ring { animation: none !important; transition-duration: 0.01ms !important; }
+            *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<nav id="main-nav">
-    <div class="container">
-        <a href="#inicio" class="nav-logo">Millena <span>Venâncio</span></a>
-        <ul class="nav-links">
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#atendimentos">Atendimentos</a></li>
-            <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="#contato">Contato</a></li>
-            <!-- ⚠️ Substitua pelo link do seu WhatsApp Business -->
-            <li><a href="https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0" target="_blank" class="nav-cta">📅 Agendar</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+<!-- ======= NAV ======= -->
+<nav id="nav">
+    <div class="wrap">
+        <div class="nav-row">
+            <a href="#hero" class="nav-brand">Millena <em>Venâncio</em></a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#atendimentos">Atendimentos</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#faq">Dúvidas</a></li>
+                <li><a href="__WA__" target="_blank" class="cta">📅 Agendar</a></li>
+            </ul>
+            <div class="ham" id="ham"><span></span><span></span><span></span></div>
+        </div>
     </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
-    <span class="mobile-close" id="mobile-close">✕</span>
-    <a href="#sobre" class="mobile-link">Sobre</a>
-    <a href="#atendimentos" class="mobile-link">Atendimentos</a>
-    <a href="#depoimentos" class="mobile-link">Depoimentos</a>
-    <a href="#redes" class="mobile-link">Redes Sociais</a>
-    <a href="#contato" class="mobile-link">Contato</a>
-    <a href="https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0" target="_blank" class="btn-primary">📅 Agendar Agora</a>
+<div class="mmenu" id="mmenu">
+    <span class="mmenu-close" id="mmenu-close">✕</span>
+    <a href="#sobre"         class="ml">Sobre</a>
+    <a href="#atendimentos"  class="ml">Atendimentos</a>
+    <a href="#depoimentos"   class="ml">Depoimentos</a>
+    <a href="#faq"           class="ml">Dúvidas</a>
+    <a href="#contato"       class="ml">Contato</a>
+    <a href="__WA__" target="_blank" class="btn btn-fill">📅 Agendar agora</a>
 </div>
 
-<!-- ===== HERO ===== -->
-<section id="inicio">
-    <svg class="blob blob-1" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#E8B4C0" d="M300,50 C420,50 520,140 530,270 C540,400 460,510 330,530 C200,550 80,470 60,340 C40,210 100,90 220,60 C247,52 273,50 300,50Z"/>
-    </svg>
-    <svg class="blob blob-2" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#7AB893" d="M200,30 C300,30 370,110 370,210 C370,310 290,380 190,375 C90,370 30,295 35,195 C40,95 110,30 200,30Z"/>
-    </svg>
-
-    <div class="container">
+<!-- ======= HERO ======= -->
+<section id="hero">
+    <div class="wrap">
         <div class="hero-grid">
-            <div class="fade-in">
-                <div class="hero-tag">✦ Bem-vindo ao seu espaço</div>
-                <h1 class="hero-title">Millena<br><em>Venâncio</em></h1>
-                <p class="hero-crp">Psicóloga · CRP 05/78593</p>
+
+            <div class="hero-text rv">
+                <p class="hero-kicker">Psicóloga · CRP 05/78593</p>
+                <h1 class="hero-h1">
+                    Seu espaço<br>
+                    para <em>cuidar</em><br>
+                    de você.
+                </h1>
                 <p class="hero-sub">
-                    Um espaço seguro para você se reconectar consigo mesmo, compreender suas emoções e construir uma vida com mais equilíbrio e bem-estar.
+                    Um ambiente seguro para compreender suas emoções, trabalhar seus padrões e construir uma vida com mais equilíbrio e bem-estar.
                 </p>
-                <div class="hero-actions">
-                    <!-- ⚠️ Substitua pelo link do seu WhatsApp Business -->
-                    <a href="https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0" target="_blank" class="btn-primary">📅 Agendar Consulta</a>
-                    <a href="#sobre" class="btn-ghost">Conheça meu trabalho</a>
-                </div>
-                <div class="hero-stats">
-                    <div><div class="stat-num">+5</div><div class="stat-lbl">anos de experiência</div></div>
-                    <div><div class="stat-num">Online</div><div class="stat-lbl">&amp; Presencial</div></div>
-                    <div><div class="stat-num">∞</div><div class="stat-lbl">Acolhimento</div></div>
+                <div class="hero-btns">
+                    <a href="__WA__" target="_blank" class="btn btn-fill">💬 Agendar consulta</a>
+                    <a href="#sobre" class="btn btn-line">Conhecer a Millena</a>
                 </div>
             </div>
-            <div class="photo-wrap fade-in">
-                <div class="photo-ring">
-                    <!-- ⚠️ Para usar foto real: <img src="foto.jpg" alt="Millena Venâncio"> -->
-                    <div class="photo-inner">MV</div>
+
+            <div class="hero-photo-side rv">
+                <!--
+                    ⚠️ FOTO REAL: substitua o <div class="hero-img"> por:
+                    <img src="foto.jpg" alt="Millena Venâncio" class="hero-img" style="max-width:380px;">
+                -->
+                <div class="hero-img">MV</div>
+                <div class="hero-badges">
+                    <span class="badge">CRP 05/78593</span>
+                    <span class="badge g">TCC</span>
+                    <span class="badge">Avaliação Psicológica</span>
+                    <span class="badge g">Online &amp; Presencial</span>
                 </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======= DORES ======= -->
+<section id="dores" class="s">
+    <div class="wrap">
+        <span class="eyebrow rv">Talvez você esteja passando por isso</span>
+        <h2 class="display rv">Você se identifica com<br>algum desses sentimentos?</h2>
+
+        <div class="dores-grid">
+            <div class="dor rv"><span class="dor-e">😮‍💨</span><span>Ansiedade constante, mesmo quando "está tudo bem"</span></div>
+            <div class="dor rv"><span class="dor-e">🪫</span><span>Cansaço emocional, desânimo ou confusão interna</span></div>
+            <div class="dor rv"><span class="dor-e">⏳</span><span>Sensação de estar sempre atrasada com a própria vida</span></div>
+            <div class="dor rv"><span class="dor-e">😶</span><span>Autocobrança em excesso e medo constante de errar</span></div>
+            <div class="dor rv"><span class="dor-e">🔁</span><span>Dificuldade em manter uma rotina ou hábitos saudáveis</span></div>
+            <div class="dor rv"><span class="dor-e">💔</span><span>Relações que geram mais cansaço do que leveza</span></div>
+        </div>
+
+        <div class="dores-note">
+            <p class="rv">
+                Essas vivências <strong>não definem quem você é</strong> — mas merecem atenção e cuidado.<br><br>
+                Você não precisa lidar com tudo isso sozinha. Existe um caminho mais leve, e estou aqui para caminhar com você.
+            </p>
+            <div class="rv" style="text-align:right;">
+                <a href="__WA__" target="_blank" class="btn btn-fill">Quero começar minha jornada</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== SOBRE ===== -->
-<section id="sobre">
-    <div class="container">
+<!-- ======= SOBRE ======= -->
+<section id="sobre" class="s s--off">
+    <div class="wrap">
         <div class="sobre-grid">
-            <div class="sobre-img-wrap fade-in">
-                <!-- ⚠️ Para usar foto real: <img src="foto.jpg" alt="Millena Venâncio" style="width:100%;height:100%;object-fit:cover"> -->
-                <div class="sobre-img">MV</div>
-                <div class="crp-badge">
-                    <div class="crp-badge-num">CRP</div>
-                    <div class="crp-badge-lbl">05/78593</div>
+
+            <div class="rv">
+                <div class="sobre-img">MV
+                    <!--
+                        ⚠️ FOTO REAL:
+                        <img src="foto.jpg" alt="Millena Venâncio">
+                    -->
+                </div>
+                <div class="sobre-tags">
+                    <span class="badge">CRP 05/78593</span>
+                    <span class="badge g">TCC</span>
+                    <span class="badge">Avaliação Psicológica</span>
+                    <span class="badge g">100% Online</span>
+                    <span class="badge">Presencial</span>
                 </div>
             </div>
-            <div class="fade-in">
-                <div class="section-label">Sobre mim</div>
-                <h2 class="section-title">Cuidar de você<br>é minha vocação</h2>
-                <p class="sobre-text">
-                    Olá! Sou Millena Venâncio, psicóloga com formação sólida e compromisso genuíno com o bem-estar emocional de cada pessoa que me procura. Meu trabalho é construído sobre escuta atenta, ética e um olhar humano para cada história.
-                </p>
-                <p class="sobre-text">
-                    Acredito que a terapia é um espaço de transformação, onde é possível compreender padrões, ressignificar experiências e desenvolver ferramentas para uma vida mais plena e autêntica.
-                </p>
-                <p class="sobre-text">
-                    Atendo adultos, adolescentes e casais, com abordagem baseada na Terapia Cognitivo-Comportamental (TCC), adaptando o cuidado às necessidades únicas de cada pessoa que me procura.
-                </p>
-                <div class="pills">
-                    <span class="pill">Terapia Cognitivo-Comportamental</span>
-                    <span class="pill green">Avaliação Psicológica</span>
-                    <span class="pill">Adultos &amp; Adolescentes</span>
-                    <span class="pill green">Atendimento Online</span>
-                    <span class="pill">Saúde Mental</span>
+
+            <div class="rv">
+                <span class="eyebrow">A psicóloga</span>
+                <h2 class="display">Sobre mim</h2>
+                <p class="sobre-p">Olá! Sou Millena Venâncio, psicóloga com formação sólida e compromisso genuíno com o bem-estar emocional de cada pessoa que me procura. Meu trabalho é construído sobre escuta atenta, ética e um olhar humano para cada história.</p>
+                <p class="sobre-p">Acredito que a terapia é um espaço de transformação — onde é possível compreender padrões, ressignificar experiências e desenvolver ferramentas para uma vida mais plena e autêntica.</p>
+                <p class="sobre-p">Atendo adultos, adolescentes e casais com abordagem baseada na Terapia Cognitivo-Comportamental (TCC), adaptando o cuidado às necessidades únicas de cada pessoa.</p>
+                <div class="sobre-btns">
+                    <a href="__WA__" target="_blank" class="btn btn-fill">Iniciar terapia comigo</a>
+                    <a href="https://instagram.com/venanciopsi" target="_blank" class="btn btn-text">Instagram</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======= ATENDIMENTOS ======= -->
+<section id="atendimentos" class="s">
+    <div class="wrap--slim">
+        <span class="eyebrow rv">O que ofereço</span>
+        <h2 class="display rv">Modalidades de<br>atendimento</h2>
+        <div class="atend-list">
+            <div class="atend-item rv">
+                <div class="atend-icon">💻</div>
+                <div>
+                    <h3>Atendimento Online</h3>
+                    <p>Consultas por videochamada com toda a qualidade do atendimento presencial. Conecte-se de onde estiver, com conforto e privacidade total.</p>
+                </div>
+            </div>
+            <div class="atend-item rv">
+                <div class="atend-icon">🏥</div>
+                <div>
+                    <h3>Atendimento Presencial</h3>
+                    <p>Sessões em consultório acolhedor, em ambiente seguro e reservado, pensado especialmente para o seu cuidado durante o processo terapêutico.</p>
+                </div>
+            </div>
+            <div class="atend-item rv">
+                <div class="atend-icon">🧠</div>
+                <div>
+                    <h3>Psicoterapia Individual</h3>
+                    <p>Acompanhamento contínuo para ansiedade, depressão, autoestima, relacionamentos e desenvolvimento pessoal, com escuta empática e técnicas baseadas em evidências.</p>
+                </div>
+            </div>
+            <div class="atend-item rv">
+                <div class="atend-icon">📋</div>
+                <div>
+                    <h3>Avaliação Psicológica</h3>
+                    <p>Processo estruturado com laudos e pareceres para fins clínicos, educacionais ou trabalhistas, utilizando instrumentos psicológicos validados.</p>
+                </div>
+            </div>
+            <div class="atend-item rv">
+                <div class="atend-icon">👫</div>
+                <div>
+                    <h3>Terapia de Casal</h3>
+                    <p>Espaço para fortalecer a comunicação, resolver conflitos e reconectar-se com o parceiro rumo a um relacionamento mais saudável e afetivo.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== ATENDIMENTOS ===== -->
-<section id="atendimentos">
-    <div class="container">
-        <div class="section-head fade-in">
-            <div class="section-label">O que ofereço</div>
-            <h2 class="section-title">Modalidades de Atendimento</h2>
-            <p class="section-sub">Cada pessoa é única. Por isso, ofereço diferentes formatos de acompanhamento para atender às suas necessidades com flexibilidade e cuidado.</p>
+<!-- ======= COMO FUNCIONA ======= -->
+<section id="como-funciona" class="s s--blush">
+    <div class="wrap--slim">
+        <span class="eyebrow rv">Como começar</span>
+        <h2 class="display rv">Comece sua terapia<br>em poucos passos</h2>
+        <div class="steps">
+            <div class="step rv">
+                <div class="step-n">01</div>
+                <div>
+                    <h3>Envie uma mensagem</h3>
+                    <p>Tire suas dúvidas sobre o processo, frequência e valores pelo WhatsApp. Sem compromisso — é só uma conversa.</p>
+                </div>
+            </div>
+            <div class="step rv">
+                <div class="step-n">02</div>
+                <div>
+                    <h3>Escolha o melhor horário</h3>
+                    <p>Encontramos juntos o dia e horário que melhor se encaixam na sua rotina. Tenho disponibilidade de segunda a sábado.</p>
+                </div>
+            </div>
+            <div class="step rv">
+                <div class="step-n">03</div>
+                <div>
+                    <h3>Realize sua primeira sessão</h3>
+                    <p>Online pelo Google Meet ou presencialmente no consultório. Você só precisa aparecer — sem preparação especial necessária.</p>
+                </div>
+            </div>
+            <div class="step rv">
+                <div class="step-n">04</div>
+                <div>
+                    <h3><em>Inicie sua jornada</em></h3>
+                    <p>A partir daí, construímos juntos o seu processo — no seu ritmo, com cuidado e ética em cada encontro.</p>
+                </div>
+            </div>
         </div>
-        <div class="cards-grid">
-            <div class="card fade-in">
-                <div class="card-icon">💻</div>
-                <h3>Atendimento Online</h3>
-                <p>Consultas por videochamada com toda a qualidade do atendimento presencial. Conecte-se de onde estiver, com conforto e privacidade.</p>
+        <div style="margin-top:48px;" class="rv">
+            <a href="__WA__" target="_blank" class="btn btn-fill">💬 Enviar uma mensagem</a>
+        </div>
+    </div>
+</section>
+
+<!-- ======= DEPOIMENTOS ======= -->
+<section id="depoimentos" class="s">
+    <div class="wrap--slim">
+        <span class="eyebrow rv">Depoimentos</span>
+        <h2 class="display rv">O que dizem<br>os pacientes</h2>
+        <div class="dep-list">
+            <div class="dep-item rv">
+                <div>
+                    <div class="dep-q">"</div>
+                    <p class="dep-txt">A Millena tem um jeito único de me fazer sentir acolhida. Cada sessão é um espaço onde consigo me abrir sem julgamentos. Minha vida mudou muito desde que comecei o processo.</p>
+                </div>
+                <div class="dep-by">
+                    <div class="dep-name">A. S.</div>
+                    <div class="dep-role">Paciente há 2 anos</div>
+                    <div class="dep-stars">★★★★★</div>
+                </div>
             </div>
-            <div class="card fade-in">
-                <div class="card-icon g">🏥</div>
-                <h3>Atendimento Presencial</h3>
-                <p>Sessões em consultório acolhedor, em ambiente seguro e reservado, pensado especialmente para o seu cuidado durante o processo terapêutico.</p>
+            <div class="dep-item rv">
+                <div>
+                    <div class="dep-q">"</div>
+                    <p class="dep-txt">Comecei o atendimento online com muito ceticismo, mas a Millena me surpreendeu completamente. A qualidade e o acolhimento foram além de tudo que esperava. Recomendo demais!</p>
+                </div>
+                <div class="dep-by">
+                    <div class="dep-name">R. M.</div>
+                    <div class="dep-role">Atendimento online</div>
+                    <div class="dep-stars">★★★★★</div>
+                </div>
             </div>
-            <div class="card fade-in">
-                <div class="card-icon">📋</div>
-                <h3>Avaliação Psicológica</h3>
-                <p>Processo estruturado de avaliação com laudos e pareceres para fins clínicos, educacionais ou trabalhistas, com instrumentos validados.</p>
-            </div>
-            <div class="card fade-in">
-                <div class="card-icon g">🧠</div>
-                <h3>Psicoterapia Individual</h3>
-                <p>Acompanhamento contínuo para ansiedade, depressão, autoestima, relacionamentos e desenvolvimento pessoal, com escuta empática.</p>
-            </div>
-            <div class="card fade-in">
-                <div class="card-icon">👫</div>
-                <h3>Terapia de Casal</h3>
-                <p>Espaço para fortalecer a comunicação, resolver conflitos e reconectar-se com o parceiro rumo a um relacionamento mais saudável e afetivo.</p>
-            </div>
-            <div class="card fade-in">
-                <div class="card-icon g">🌱</div>
-                <h3>Orientação Parental</h3>
-                <p>Suporte para pais e responsáveis que buscam compreender melhor os filhos e fortalecer os vínculos familiares com mais afeto e segurança.</p>
+            <div class="dep-item rv">
+                <div>
+                    <div class="dep-q">"</div>
+                    <p class="dep-txt">A terapia me ajudou a entender padrões que eu repetia há anos. Hoje me sinto mais leve, mais segura e capaz de tomar decisões com mais clareza e autoconfiança.</p>
+                </div>
+                <div class="dep-by">
+                    <div class="dep-name">C. F.</div>
+                    <div class="dep-role">Paciente há 1 ano</div>
+                    <div class="dep-stars">★★★★★</div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== DEPOIMENTOS ===== -->
-<section id="depoimentos">
-    <div class="container">
-        <div class="section-head fade-in">
-            <div class="section-label">Depoimentos</div>
-            <h2 class="section-title">O que dizem os pacientes</h2>
-            <p class="section-sub">Relatos reais de pessoas que encontraram acolhimento e transformação no processo terapêutico.</p>
-        </div>
-        <div class="dep-grid">
-            <div class="dep-card fade-in">
-                <div class="dep-quote">"</div>
-                <div class="dep-stars">★★★★★</div>
-                <p class="dep-text">A Millena tem um jeito único de me fazer sentir acolhida. Cada sessão é um espaço onde consigo me abrir sem julgamentos. Minha vida mudou muito desde que comecei o processo.</p>
-                <div class="dep-author">
-                    <div class="dep-avatar">A.S</div>
-                    <div><div class="dep-name">A. S.</div><div class="dep-role">Paciente há 2 anos</div></div>
-                </div>
+<!-- ======= REDES SOCIAIS ======= -->
+<section id="redes" class="s s--off">
+    <div class="wrap">
+        <div class="redes-row">
+            <div class="rv">
+                <span class="eyebrow">Redes Sociais</span>
+                <h2 class="display" style="margin-bottom:8px;">Me acompanhe<br>por aí</h2>
+                <p style="font-size:0.95rem;color:var(--muted);max-width:340px;">Conteúdo sobre saúde mental, bem-estar e dicas para o dia a dia.</p>
             </div>
-            <div class="dep-card fade-in">
-                <div class="dep-quote">"</div>
-                <div class="dep-stars">★★★★★</div>
-                <p class="dep-text">Comecei o atendimento online com ceticismo, mas a Millena me surpreendeu completamente. A qualidade e o acolhimento foram além de tudo que esperava. Recomendo demais!</p>
-                <div class="dep-author">
-                    <div class="dep-avatar">R.M</div>
-                    <div><div class="dep-name">R. M.</div><div class="dep-role">Atendimento online</div></div>
-                </div>
-            </div>
-            <div class="dep-card fade-in">
-                <div class="dep-quote">"</div>
-                <div class="dep-stars">★★★★★</div>
-                <p class="dep-text">A terapia me ajudou a entender padrões que eu repetia há anos. Hoje me sinto mais leve, mais segura e capaz de tomar decisões com muito mais clareza e autoconfiança.</p>
-                <div class="dep-author">
-                    <div class="dep-avatar">C.F</div>
-                    <div><div class="dep-name">C. F.</div><div class="dep-role">Paciente há 1 ano</div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== REDES SOCIAIS ===== -->
-<section id="redes">
-    <div class="container">
-        <div class="redes-inner">
-            <div class="fade-in">
-                <div class="section-label">Redes Sociais</div>
-                <h2 class="section-title">Me acompanhe<br>por aí ✦</h2>
-                <p>Conteúdo sobre saúde mental, bem-estar e dicas para o seu dia a dia.</p>
-            </div>
-            <div class="redes-links fade-in">
+            <div class="redes-btns rv">
                 <a href="https://instagram.com/venanciopsi" target="_blank" class="rede-btn">
-                    <span class="rede-btn-icon">📸</span>
+                    <span>📸</span>
                     <div>
-                        <div class="rede-btn-meta-lbl">Instagram</div>
-                        <div class="rede-btn-meta-val">@venanciopsi</div>
+                        <div class="rede-lbl">Instagram</div>
+                        <div class="rede-val">@venanciopsi</div>
                     </div>
                 </a>
-                <!-- ⚠️ Substitua pelo link do seu WhatsApp Business -->
-                <a href="https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0" target="_blank" class="rede-btn">
-                    <span class="rede-btn-icon">💬</span>
+                <a href="__WA__" target="_blank" class="rede-btn">
+                    <span>💬</span>
                     <div>
-                        <div class="rede-btn-meta-lbl">WhatsApp</div>
-                        <div class="rede-btn-meta-val">Fale comigo</div>
+                        <div class="rede-lbl">WhatsApp</div>
+                        <div class="rede-val">Fale comigo</div>
                     </div>
                 </a>
             </div>
@@ -595,57 +706,80 @@
     </div>
 </section>
 
-<!-- ===== AGENDAMENTO ===== -->
-<section id="agendamento">
-    <div class="container">
-        <div class="agenda-grid">
-            <div class="fade-in">
-                <div class="section-label">Agendamento</div>
-                <h2 class="section-title">Pronta para<br>começar?</h2>
-                <p>O primeiro passo pode ser o mais difícil, mas estou aqui para te receber com cuidado e respeito. Agende sua consulta pelo WhatsApp!</p>
-                <p> </p>
-                <div class="info-list">
-                    <div class="info-row"><div class="info-icon">🕐</div><span>Sessões de 50 minutos</span></div>
-                    <div class="info-row"><div class="info-icon">📅</div><span>Horários flexíveis, segunda a sábado</span></div>
-                    <div class="info-row"><div class="info-icon">💻</div><span>Online e presencial disponíveis</span></div>
-                    <div class="info-row"><div class="info-icon">🔒</div><span>Sigilo e ética profissional garantidos</span></div>
-                </div>
+<!-- ======= FAQ ======= -->
+<section id="faq" class="s">
+    <div class="wrap--slim">
+        <span class="eyebrow rv">Dúvidas</span>
+        <h2 class="display rv">Perguntas<br>frequentes</h2>
+        <p class="rv" style="font-size:0.96rem;color:var(--muted);margin-bottom:0;">Se ainda tiver alguma dúvida, é só me enviar uma mensagem pelo WhatsApp.</p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-btn">
+                    <span class="faq-q">E se eu não souber o que falar?</span>
+                    <span class="faq-ico">+</span>
+                </button>
+                <div class="faq-ans">Não tem problema! Eu sempre vou te ajudar com perguntas e direcionar os atendimentos de uma forma leve e que faça sentido para você. Não existe resposta certa ou errada na terapia.</div>
             </div>
-            <div class="fade-in">
-                <div class="wa-card">
-                    <div class="wa-card-icon">💬</div>
-                    <h3>Agende pelo WhatsApp</h3>
-                    <p>Clique abaixo para falar diretamente comigo e marcar sua primeira sessão. Responderei o mais rápido possível!</p>
-                    <!-- ⚠️ Substitua pelo link do seu WhatsApp Business -->
-                    <a href="https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0" target="_blank" class="btn-wa">
-                        💬 Agendar agora
-                    </a>
-                </div>
+            <div class="faq-item">
+                <button class="faq-btn">
+                    <span class="faq-q">Quanto tempo dura o tratamento?</span>
+                    <span class="faq-ico">+</span>
+                </button>
+                <div class="faq-ans">A terapia não tem um tempo certo para acabar. Cada pessoa tem seu ritmo e algumas mudanças levam mais tempo que outras. O processo é construído de acordo com as suas necessidades.</div>
             </div>
+            <div class="faq-item">
+                <button class="faq-btn">
+                    <span class="faq-q">Como funciona o atendimento online?</span>
+                    <span class="faq-ico">+</span>
+                </button>
+                <div class="faq-ans">As sessões acontecem por videochamada (Google Meet ou similar). Escolha um lugar tranquilo onde você se sinta à vontade. A qualidade do cuidado é a mesma do presencial.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-btn">
+                    <span class="faq-q">Atende convênio ou plano de saúde?</span>
+                    <span class="faq-ico">+</span>
+                </button>
+                <div class="faq-ans">Atendo de forma particular. Para consultar os valores e formas de pagamento, é só me enviar uma mensagem pelo WhatsApp.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-btn">
+                    <span class="faq-q">Qual é a frequência e duração das sessões?</span>
+                    <span class="faq-ico">+</span>
+                </button>
+                <div class="faq-ans">O padrão são sessões semanais de 50 minutos. Podemos conversar sobre a frequência ideal para a sua rotina e necessidade no momento.</div>
+            </div>
+        </div>
+        <div style="margin-top:32px;" class="rv">
+            <a href="__WA__" target="_blank" class="btn btn-text">Fale comigo</a>
         </div>
     </div>
 </section>
 
-<!-- ===== FORMULÁRIO ===== -->
-<section id="contato">
-    <div class="container">
-        <div class="form-grid">
-            <div class="fade-in">
-                <div class="section-label">Entre em contato</div>
-                <h2 class="section-title">Tem alguma<br>dúvida?</h2>
-                <p>Preencha o formulário e entrarei em contato em breve. Ficarei feliz em responder suas perguntas e ajudar você a dar o primeiro passo.</p>
+<!-- ======= FORMULÁRIO ======= -->
+<section id="contato" class="s s--off">
+    <div class="wrap">
+        <div class="form-2col">
+            <div class="rv">
+                <span class="eyebrow">Entre em contato</span>
+                <h2 class="display">Tem alguma<br>dúvida?</h2>
+                <p class="form-intro">Preencha o formulário e entrarei em contato em breve. Ficarei feliz em responder suas perguntas e ajudar você a dar o primeiro passo.</p>
             </div>
-            <div class="form-card fade-in">
-                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="SEU_ACCESS_KEY_AQUI">
-                    <input type="hidden" name="subject" value="Nova mensagem — Site Millena Venâncio Psicóloga">
-                    <input type="hidden" name="from_name" value="Site Millena Venâncio">
-                    <input type="checkbox" name="botcheck" style="display:none">
-
-                    <div class="form-row-2">
+            <div class="form-box rv">
+                <!--
+                    ⚠️ FORMULÁRIO — configure o Web3Forms:
+                    1. Acesse https://web3forms.com e gere um Access Key com o e-mail dela
+                    2. Substitua "SEU_ACCESS_KEY_AQUI" pelo key gerado
+                -->
+                <form id="form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key"  value="SEU_ACCESS_KEY_AQUI">
+                    <input type="hidden" name="subject"     value="Nova mensagem — Site Millena Venâncio">
+                    <input type="hidden" name="from_name"   value="Site Millena Venâncio">
+                    <input type="checkbox" name="botcheck"  style="display:none">
+                    <div class="form-r2">
                         <div class="fg">
                             <label for="nome">Nome *</label>
-                            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                            <input type="text"  id="nome"  name="nome"  placeholder="Seu nome"      required>
                         </div>
                         <div class="fg">
                             <label for="email">E-mail *</label>
@@ -653,8 +787,8 @@
                         </div>
                     </div>
                     <div class="fg">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(21) 9XXXX-XXXX">
+                        <label for="tel">Telefone</label>
+                        <input type="tel" id="tel" name="telefone" placeholder="(21) 9XXXX-XXXX">
                     </div>
                     <div class="fg">
                         <label for="assunto">Assunto</label>
@@ -668,10 +802,10 @@
                         </select>
                     </div>
                     <div class="fg">
-                        <label for="mensagem">Mensagem *</label>
-                        <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                        <label for="msg">Mensagem *</label>
+                        <textarea id="msg" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
                     </div>
-                    <button type="submit" class="btn-primary btn-form">Enviar mensagem ✦</button>
+                    <button type="submit" class="btn btn-fill btn-submit">Enviar mensagem</button>
                 </form>
                 <div class="form-ok" id="form-ok">✅ Mensagem enviada! Entrarei em contato em breve.</div>
             </div>
@@ -679,72 +813,91 @@
     </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-    <div class="container">
-        <div class="footer-inner">
-            <div>
-                <div class="footer-brand">Millena <span>Venâncio</span></div>
-                <div class="footer-crp">Psicóloga · CRP 05/78593</div>
-            </div>
-            <ul class="footer-links">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#atendimentos">Atendimentos</a></li>
-                <li><a href="#depoimentos">Depoimentos</a></li>
-                <li><a href="https://instagram.com/venanciopsi" target="_blank">@venanciopsi</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+<!-- ======= CTA FINAL ======= -->
+<section id="cta">
+    <div class="wrap">
+        <h2 class="cta-h rv">Você merece viver<br>com <em>mais leveza</em>.</h2>
+        <p class="cta-p rv">Não é fraqueza pedir ajuda. É um ato de coragem e cuidado consigo mesma. Estou aqui para caminhar junto com você.</p>
+        <div class="rv">
+            <a href="__WA__" target="_blank" class="btn btn-fill">💬 Agendar consulta</a>
         </div>
-        <p class="footer-copy">© 2025 Millena Venâncio — Todos os direitos reservados. Psicóloga registrada no CFP/CRP 05/78593.</p>
+        <p class="cta-meta">Atendimento online e presencial · Horários flexíveis · Sigilo garantido</p>
+    </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+    <div class="wrap">
+        <div class="foot-row">
+            <div>
+                <div class="foot-brand">Millena <em>Venâncio</em></div>
+                <div class="foot-crp">Psicóloga · CRP 05/78593</div>
+            </div>
+            <div class="foot-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#atendimentos">Atendimentos</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="https://instagram.com/venanciopsi" target="_blank">@venanciopsi</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+        <p class="foot-copy">© 2025 Millena Venâncio — Todos os direitos reservados. Psicóloga registrada no CFP/CRP 05/78593.</p>
     </div>
 </footer>
 
 <!-- FLOATING WHATSAPP -->
-<a href="https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0"
-   target="_blank"
-   class="wa-float"
-   title="Agendar pelo WhatsApp"
-   aria-label="Contato via WhatsApp">💬</a>
+<a href="__WA__" target="_blank" class="wa-float" title="Agendar pelo WhatsApp" aria-label="WhatsApp">💬</a>
 
 <script>
-    // NAV scroll effect
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+    /* === WHATSAPP LINK (troque pelo número real se necessário) === */
+    const WA = "https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0";
+    document.querySelectorAll('[href="__WA__"]').forEach(el => el.href = WA);
 
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-    document.getElementById('mobile-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
-    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+    /* === NAV SCROLL === */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 40), { passive: true });
 
-    // Scroll fade-in animations
-    const observer = new IntersectionObserver(
-        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-        { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+    /* === HAMBURGER === */
+    const mmenu = document.getElementById('mmenu');
+    document.getElementById('ham').addEventListener('click', () => mmenu.classList.add('open'));
+    document.getElementById('mmenu-close').addEventListener('click', () => mmenu.classList.remove('open'));
+    document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', () => mmenu.classList.remove('open')));
+
+    /* === SCROLL REVEAL === */
+    const ro = new IntersectionObserver(
+        es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); }),
+        { threshold: 0.08, rootMargin: '0px 0px -24px 0px' }
     );
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 
-    // Contact form (Web3Forms)
-    const form = document.getElementById('contact-form');
+    /* === FAQ ACCORDION === */
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const open = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!open) item.classList.add('open');
+        });
+    });
+
+    /* === FORM SUBMIT === */
+    const form = document.getElementById('form');
     const formOk = document.getElementById('form-ok');
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async e => {
         e.preventDefault();
         const btn = form.querySelector('button[type="submit"]');
-        const original = btn.textContent;
+        const orig = btn.textContent;
         btn.textContent = 'Enviando...';
         btn.disabled = true;
         try {
-            const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+            const res  = await fetch(form.action, { method: 'POST', body: new FormData(form) });
             const data = await res.json();
-            if (data.success) {
-                form.style.display = 'none';
-                formOk.style.display = 'block';
-            } else throw new Error();
+            if (data.success) { form.style.display = 'none'; formOk.style.display = 'block'; }
+            else throw new Error();
         } catch {
-            btn.textContent = 'Erro ao enviar. Tente novamente.';
+            btn.textContent = 'Erro. Tente novamente.';
             btn.disabled = false;
-            setTimeout(() => { btn.textContent = original; }, 3500);
+            setTimeout(() => { btn.textContent = orig; }, 3500);
         }
     });
 </script>
