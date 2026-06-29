@@ -852,7 +852,7 @@
 
     /* === HAMBURGER === */
     const mmenu = document.getElementById('mmenu');
-    document.getElementById('ham').addEventListener('click', () => mmenu.classList.add('open'));
+    document.getElementById('ham').addEventListener('click', () => mmenu.classList.toggle('open'));
     document.getElementById('mmenu-close').addEventListener('click', () => mmenu.classList.remove('open'));
     document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', () => mmenu.classList.remove('open')));
 
