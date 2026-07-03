@@ -114,7 +114,7 @@
         }
         .nav-links .cta:hover { background: var(--mauve-dark); }
 
-        .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-right: -6px; }
+        .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
         .ham span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
 
         .mmenu {
@@ -125,7 +125,6 @@
         .mmenu.open { display: flex; }
         .mmenu a    { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); transition: color 0.2s; }
         .mmenu a:hover { color: var(--mauve); }
-        .mmenu-close { position: absolute; top: 22px; right: 26px; font-size: 1.3rem; cursor: pointer; color: var(--text); }
 
         /* ===== HERO ===== */
         #hero {
@@ -436,7 +435,6 @@
 
 <!-- MOBILE MENU -->
 <div class="mmenu" id="mmenu">
-    <span class="mmenu-close" id="mmenu-close">✕</span>
     <a href="#sobre"         class="ml">Sobre</a>
     <a href="#atendimentos"  class="ml">Atendimentos</a>
     <a href="#depoimentos"   class="ml">Depoimentos</a>
@@ -853,7 +851,6 @@
     /* === HAMBURGER === */
     const mmenu = document.getElementById('mmenu');
     document.getElementById('ham').addEventListener('click', () => mmenu.classList.toggle('open'));
-    document.getElementById('mmenu-close').addEventListener('click', () => mmenu.classList.remove('open'));
     document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', () => mmenu.classList.remove('open')));
 
     /* === SCROLL REVEAL === */
