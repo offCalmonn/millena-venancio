@@ -88,26 +88,29 @@
         #nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 20px 0;
+            background: var(--dark);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
             transition: background 0.3s, box-shadow 0.3s;
         }
         #nav.on {
-            background: rgba(253,250,249,0.96);
+            background: rgba(46,40,40,0.96);
             backdrop-filter: blur(14px);
             box-shadow: 0 1px 0 rgba(0,0,0,0.06);
         }
         .nav-row  { display: flex; align-items: center; justify-content: space-between; }
         .nav-brand {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem; font-weight: 700; color: var(--dark);
+            font-size: 1.1rem; font-weight: 700; color: var(--white);
         }
-        .nav-brand em { font-style: italic; color: var(--mauve); }
+        .nav-brand em { font-style: italic; color: var(--rose); }
         .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .nav-links a {
-            font-size: 0.84rem; font-weight: 500; color: var(--text);
+            font-size: 0.84rem; font-weight: 500; color: rgba(255,255,255,0.7);
             transition: color 0.2s;
         }
-        .nav-links a:hover { color: var(--mauve); }
+        .nav-links a:hover { color: var(--white); }
         .nav-links .cta {
+            display: inline-flex; align-items: center; gap: 6px;
             background: var(--mauve); color: var(--white) !important;
             padding: 9px 20px; border-radius: 3px; font-weight: 600;
             transition: background 0.2s;
@@ -115,7 +118,7 @@
         .nav-links .cta:hover { background: var(--mauve-dark); }
 
         .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-        .ham span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
+        .ham span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
 
         .mmenu {
             display: none; position: fixed; inset: 0;
@@ -361,19 +364,19 @@
         .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 26px rgba(37,211,102,0.55); }
 
         /* ===== FOOTER ===== */
-        footer { background: var(--dark); padding: 44px 0; }
+        footer { background: var(--dark); padding: 22px 0; }
         .foot-row {
             display: flex; align-items: center;
-            justify-content: space-between; flex-wrap: wrap; gap: 20px;
+            justify-content: space-between; flex-wrap: wrap; gap: 12px;
         }
-        .foot-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); }
+        .foot-brand { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); }
         .foot-brand em { font-style: italic; color: var(--rose); }
-        .foot-crp { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 3px; }
-        .foot-links a { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-right: 20px; transition: color 0.2s; }
+        .foot-crp { font-size: 0.68rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+        .foot-links a { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-right: 20px; transition: color 0.2s; }
         .foot-links a:hover { color: var(--white); }
         .foot-copy {
-            font-size: 0.7rem; color: rgba(255,255,255,0.25); text-align: center;
-            width: 100%; margin-top: 14px; padding-top: 14px;
+            font-size: 0.68rem; color: rgba(255,255,255,0.25); text-align: center;
+            width: 100%; margin-top: 8px; padding-top: 8px;
             border-top: 1px solid rgba(255,255,255,0.07);
         }
 
@@ -426,7 +429,7 @@
                 <li><a href="#atendimentos">Atendimentos</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
                 <li><a href="#faq">Dúvidas</a></li>
-                <li><a href="__WA__" target="_blank" class="cta">📅 Agendar</a></li>
+                <li><a href="__WA__" target="_blank" class="cta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Agendar</a></li>
             </ul>
             <div class="ham" id="ham"><span></span><span></span><span></span></div>
         </div>
@@ -440,7 +443,7 @@
     <a href="#depoimentos"   class="ml">Depoimentos</a>
     <a href="#faq"           class="ml">Dúvidas</a>
     <a href="#contato"       class="ml">Contato</a>
-    <a href="__WA__" target="_blank" class="btn btn-fill">📅 Agendar agora</a>
+    <a href="__WA__" target="_blank" class="btn btn-fill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Agendar agora</a>
 </div>
 
 <!-- ======= HERO ======= -->
@@ -456,7 +459,7 @@
                     de você.
                 </h1>
                 <p class="hero-sub">
-                    Um ambiente seguro para compreender suas emoções, trabalhar seus padrões e construir uma vida com mais equilíbrio e bem-estar.
+                    Um espaço para você se escutar, compreender sua história e construir novos sentidos: falar, sentir e elaborar aquilo que, muitas vezes, não encontra palavras.
                 </p>
                 <div class="hero-btns">
                     <a href="__WA__" target="_blank" class="btn btn-fill">💬 Agendar consulta</a>
@@ -468,9 +471,10 @@
                 <img src="millena-venancio.jpeg" alt="Millena Venâncio" class="hero-img" style="max-width:380px;">
                 <div class="hero-badges">
                     <span class="badge">CRP 05/78593</span>
-                    <span class="badge g">TCC</span>
+                    <span class="badge g">Psicanálise</span>
                     <span class="badge">Avaliação Psicológica</span>
-                    <span class="badge g">Online &amp; Presencial</span>
+                    <span class="badge g">Presencial: Niterói e São Gonçalo</span>
+                    <span class="badge">Online</span>
                 </div>
             </div>
 
@@ -487,16 +491,18 @@
         <div class="dores-grid">
             <div class="dor rv"><span class="dor-e">😮‍💨</span><span>Ansiedade constante, mesmo quando "está tudo bem"</span></div>
             <div class="dor rv"><span class="dor-e">🪫</span><span>Cansaço emocional, desânimo ou confusão interna</span></div>
-            <div class="dor rv"><span class="dor-e">⏳</span><span>Sensação de estar sempre atrasada com a própria vida</span></div>
+            <div class="dor rv"><span class="dor-e">⏳</span><span>Questões do passado que continuam produzindo efeitos no presente</span></div>
             <div class="dor rv"><span class="dor-e">😶</span><span>Autocobrança em excesso e medo constante de errar</span></div>
-            <div class="dor rv"><span class="dor-e">🔁</span><span>Dificuldade em manter uma rotina ou hábitos saudáveis</span></div>
-            <div class="dor rv"><span class="dor-e">💔</span><span>Relações que geram mais cansaço do que leveza</span></div>
+            <div class="dor rv"><span class="dor-e">🔁</span><span>Dificuldade de estabelecer limites e reconhecer os próprios desejos</span></div>
+            <div class="dor rv"><span class="dor-e">💔</span><span>Relações que despertam dúvidas, inseguranças ou conflitos</span></div>
         </div>
 
         <div class="dores-note">
             <p class="rv">
-                Essas vivências <strong>não definem quem você é</strong> — mas merecem atenção e cuidado.<br><br>
-                Você não precisa lidar com tudo isso sozinha. Existe um caminho mais leve, e estou aqui para caminhar com você.
+                Essas vivências <strong>não definem quem você é</strong> mas merecem atenção e cuidado. 
+                Um sinal de que existe algo pedindo para ser escutado. <br><br>
+                Um espaço para você falar sem julgamentos, compreender sua história e olhar para si.<br><br>
+                Se você sente que está na hora de cuidar de você, estou aqui para te acompanhar.
             </p>
             <div class="rv" style="text-align:right;">
                 <a href="__WA__" target="_blank" class="btn btn-fill">Quero começar minha jornada</a>
@@ -516,22 +522,27 @@
                 </div>
                 <div class="sobre-tags">
                     <span class="badge">CRP 05/78593</span>
-                    <span class="badge g">TCC</span>
+                    <span class="badge g">Psicanálise</span>
                     <span class="badge">Avaliação Psicológica</span>
                     <span class="badge g">100% Online</span>
-                    <span class="badge">Presencial</span>
+                    <span class="badge">Presencial: Niterói e São Gonçalo</span>
                 </div>
             </div>
 
             <div class="rv">
                 <span class="eyebrow">A psicóloga</span>
                 <h2 class="display">Sobre mim</h2>
-                <p class="sobre-p">Olá! Sou Millena Venâncio, psicóloga com formação sólida e compromisso genuíno com o bem-estar emocional de cada pessoa que me procura. Meu trabalho é construído sobre escuta atenta, ética e um olhar humano para cada história.</p>
-                <p class="sobre-p">Acredito que a terapia é um espaço de transformação — onde é possível compreender padrões, ressignificar experiências e desenvolver ferramentas para uma vida mais plena e autêntica.</p>
-                <p class="sobre-p">Atendo adultos, adolescentes e casais com abordagem baseada na Terapia Cognitivo-Comportamental (TCC), adaptando o cuidado às necessidades únicas de cada pessoa.</p>
+                <p class="sobre-p">Olá, sou Millena Venâncio, psicóloga, e acredito na importância de encontrar um espaço onde você possa falar livremente e ser verdadeiramente escutado.</p>
+                <p class="sobre-p">Meu trabalho é orientado pela Psicanálise e construído a partir de uma escuta acolhedora, ética e atenta à singularidade de cada pessoa e à sua história.</p>
+                <p class="sobre-p">Na terapia, acredito que aquilo que sentimos, pensamos e repetimos pode ganhar novos sentidos quando encontra um espaço de escuta. É um processo que permite olhar para as próprias experiências, compreender conflitos, reconhecer desejos e elaborar aquilo que, muitas vezes, ainda não conseguimos colocar em palavras.</p>
+                <p class="sobre-p">Atendo crianças, adolescentes, adultos e idosos, respeitando o tempo, as particularidades e as necessidades de cada sujeito.</p>
+                <p class="sobre-p">Meu propósito é oferecer um espaço seguro e acolhedor para que você possa se escutar, se compreender e construir, a partir da sua própria história, novas possibilidades.</p>
                 <div class="sobre-btns">
                     <a href="__WA__" target="_blank" class="btn btn-fill">Iniciar terapia comigo</a>
-                    <a href="https://instagram.com/venanciopsi" target="_blank" class="btn btn-text">Instagram</a>
+                    <a href="https://instagram.com/venanciopsi" target="_blank" class="btn btn-line">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+                        Instagram
+                    </a>
                 </div>
             </div>
 
@@ -555,7 +566,7 @@
             <div class="atend-item rv">
                 <div class="atend-icon">🏥</div>
                 <div>
-                    <h3>Atendimento Presencial</h3>
+                    <h3>Atendimento Presencial: Niterói e São Gonçalo</h3>
                     <p>Sessões em consultório acolhedor, em ambiente seguro e reservado, pensado especialmente para o seu cuidado durante o processo terapêutico.</p>
                 </div>
             </div>
@@ -563,7 +574,7 @@
                 <div class="atend-icon">🧠</div>
                 <div>
                     <h3>Psicoterapia Individual</h3>
-                    <p>Acompanhamento contínuo para ansiedade, depressão, autoestima, relacionamentos e desenvolvimento pessoal, com escuta empática e técnicas baseadas em evidências.</p>
+                    <p>Acompanhamento contínuo para ansiedade, depressão, autoestima, relacionamentos e desenvolvimento pessoal, com escuta empática.</p>
                 </div>
             </div>
             <div class="atend-item rv">
@@ -574,10 +585,10 @@
                 </div>
             </div>
             <div class="atend-item rv">
-                <div class="atend-icon">👫</div>
+                <div class="atend-icon">👨‍👩‍👧‍👦</div>
                 <div>
-                    <h3>Terapia de Casal</h3>
-                    <p>Espaço para fortalecer a comunicação, resolver conflitos e reconectar-se com o parceiro rumo a um relacionamento mais saudável e afetivo.</p>
+                    <h3>Atendimento infantil, adolescente, adulto e idoso</h3>
+                    <p>Cuidado psicológico em todas as fases da vida, com escuta acolhedora e abordagem adaptada às necessidades de cada idade.</p>
                 </div>
             </div>
         </div>
@@ -601,20 +612,20 @@
                 <div class="step-n">02</div>
                 <div>
                     <h3>Escolha o melhor horário</h3>
-                    <p>Encontramos juntos o dia e horário que melhor se encaixam na sua rotina. Tenho disponibilidade de segunda a sábado.</p>
+                    <p>Encontramos juntos o dia e horário que melhor se encaixam na sua rotina. Tenho disponibilidade de segunda a sexta.</p>
                 </div>
             </div>
             <div class="step rv">
                 <div class="step-n">03</div>
                 <div>
                     <h3>Realize sua primeira sessão</h3>
-                    <p>Online pelo Google Meet ou presencialmente no consultório. Você só precisa aparecer — sem preparação especial necessária.</p>
+                    <p>Online pelo Google Meet ou presencialmente no consultório.</p>
                 </div>
             </div>
             <div class="step rv">
                 <div class="step-n">04</div>
                 <div>
-                    <h3><em>Inicie sua jornada</em></h3>
+                    <h3>Inicie sua jornada</h3>
                     <p>A partir daí, construímos juntos o seu processo — no seu ritmo, com cuidado e ética em cada encontro.</p>
                 </div>
             </div>
@@ -808,7 +819,7 @@
 <section id="cta">
     <div class="wrap">
         <h2 class="cta-h rv">Você merece viver<br>com <em>mais leveza</em>.</h2>
-        <p class="cta-p rv">Não é fraqueza pedir ajuda. É um ato de coragem e cuidado consigo mesma. Estou aqui para caminhar junto com você.</p>
+        <p class="cta-p rv">Não é fraqueza pedir ajuda. É um ato de coragem e cuidado consigo mesmo. Estou aqui para caminhar junto com você.</p>
         <div class="rv">
             <a href="__WA__" target="_blank" class="btn btn-fill">💬 Agendar consulta</a>
         </div>
