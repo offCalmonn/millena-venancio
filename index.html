@@ -899,7 +899,15 @@
 <script>
     /* === WHATSAPP LINK (troque pelo número real se necessário) === */
     const WA = "https://api.whatsapp.com/send/?phone=5521993493750&text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+agendar+uma+consulta.+Poderia+me+informar+sobre+a+disponibilidade+de+hor%C3%A1rios%3F&type=phone_number&app_absent=0";
-    document.querySelectorAll('[href="__WA__"]').forEach(el => el.href = WA);
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('[href="__WA__"]').forEach(el => {
+        el.href = WA;
+        /* Evento GTM: clique em qualquer botão de WhatsApp */
+        el.addEventListener('click', () => dataLayer.push({
+            event: 'whatsapp_click',
+            button_text: (el.textContent.trim() || el.getAttribute('aria-label') || '').slice(0, 60)
+        }));
+    });
 
     /* === NAV SCROLL === */
     const nav = document.getElementById('nav');
@@ -939,7 +947,11 @@
         try {
             const res  = await fetch(form.action, { method: 'POST', body: new FormData(form) });
             const data = await res.json();
-            if (data.success) { form.style.display = 'none'; formOk.style.display = 'block'; }
+            if (data.success) {
+                form.style.display = 'none'; formOk.style.display = 'block';
+                /* Evento GTM: formulário enviado com sucesso */
+                dataLayer.push({ event: 'form_submit_success', form_id: 'contato' });
+            }
             else throw new Error();
         } catch {
             btn.textContent = 'Erro. Tente novamente.';
